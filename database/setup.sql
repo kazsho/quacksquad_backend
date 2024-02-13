@@ -1,5 +1,5 @@
 DROP TABLE IF EXISTS location CASCADE;
-DROP TABLE IF EXISTS lendings CASCADE;
+DROP TABLE IF EXISTS lending CASCADE;
 DROP TABLE IF EXISTS borrower CASCADE;
 DROP TABLE IF EXISTS staff CASCADE;
 DROP TABLE IF EXISTS tool CASCADE;
@@ -33,12 +33,14 @@ CREATE TABLE borrower(
     PRIMARY KEY(borrower_id)
 );
 
-CREATE TABLE lendings(
+CREATE TABLE lending(
+    lending_id INTEGER GENERATED ALWAYS AS IDENTITY,
     borrower_id INTEGER NOT NULL,
     tool_id INTEGER NOT NULL,
     start_date DATE NOT NULL,
     end_date DATE NOT NULL,
     active BOOLEAN NOT NULL,
+    PRIMARY KEY(lending_id),
     FOREIGN KEY (tool_id) REFERENCES tool(tool_id),
     FOREIGN KEY (borrower_id) REFERENCES borrower(borrower_id)
 );
