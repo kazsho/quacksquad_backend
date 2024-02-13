@@ -51,11 +51,10 @@ static async update(id, data){
 }
 
 
-// async destroy(){
-//     let response = await db.query("DELETE FROM country WHERE name = $1 RETURNING *;", [this.name])
-//     return new Country(response.rows[0])
-// }
-
+static async destroy(id){
+    let response = await db.query("DELETE FROM tool WHERE tool_id = $1 RETURNING *;", [id])
+    return new Tool(response.rows[0])
+}
 
 }
 

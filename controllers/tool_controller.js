@@ -40,5 +40,16 @@ const update = async (req, res) => {
     }
 }
 
+const destroy = async (req, res) => {
+    try{
+        const id = parseInt(req.params.id)
+        const result = await Tool.destroy(id)
+        res.status(204).end()
 
-module.exports = { index, show, create, update }
+    }catch (error){
+        res.status(404).json({error: error.message})
+    }
+}
+
+
+module.exports = { index, show, create, update, destroy }
