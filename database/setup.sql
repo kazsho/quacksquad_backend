@@ -47,14 +47,14 @@ CREATE TABLE lending(
 
 CREATE TABLE staff(
     staff_password VARCHAR(255) NOT NULL,
-    staff_username VARCHAR(255) NOT NULL,
+    staff_username VARCHAR(255) UNIQUE NOT NULL,
     staff_id INTEGER GENERATED ALWAYS AS IDENTITY,
     PRIMARY KEY(staff_id)
 );
 
 CREATE TABLE token(
     staff_id INTEGER NOT NULL,
-    token VARCHAR(255) NOT NULL,
+    token VARCHAR(255) UNIQUE NOT NULL,
     token_id INTEGER GENERATED ALWAYS AS IDENTITY,
     PRIMARY KEY(token_id),
     FOREIGN KEY (staff_id) REFERENCES staff(staff_id)
