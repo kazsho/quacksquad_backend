@@ -11,14 +11,7 @@ app.use(cors());
 app.use(express.json());
 app.use(logRoutes);
 
-// app.get("/", (req, res) => {
-//     res.json({
-//         name: "Discretion",
-//         description: "Send and receive private messages."
-//     })
-// })
-
-// app.use("/tools", toolRouter);
+app.use("/tools", toolRouter);
 
 
 module.exports = app;
