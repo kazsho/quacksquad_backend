@@ -20,6 +20,13 @@ static async getAll() {
     return response.rows.map(t => new Tool(t))
 }
 
+static async getOneById(id) {
+    const response = await db.query("SELECT * FROM tool WHERE tool_id = $1", [id]);
+    if (response.rows.length != 1) {
+        throw new Error("Unable to locate tool.")
+    }
+    return new Tool(response.rows[0]);
+}
 
 }
 

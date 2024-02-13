@@ -9,5 +9,15 @@ const index = async (req, res) => {
     }
 } 
 
+async function show (req, res) {
+    try {
+        const id = parseInt(req.params.id);
+        const tool = await Tool.getOneById(id);
+        res.json(tool);
+    } catch (err) {
+        res.status(404).json({"error": err.message})
+    }
+};
 
-module.exports = { index }
+
+module.exports = { index, show }
