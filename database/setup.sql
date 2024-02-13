@@ -14,7 +14,7 @@ CREATE TABLE location(
 );
 
 CREATE TABLE tool(
-    tool_id INTEGER NOT NULL,
+    tool_id INTEGER GENERATED ALWAYS AS IDENTITY,
     location_id INTEGER NOT NULL,
     tool_name VARCHAR(255) NOT NULL,
     price_per_day INTEGER NOT NULL,
@@ -26,7 +26,7 @@ CREATE TABLE tool(
 );
 
 CREATE TABLE borrower(
-    borrower_id INTEGER NOT NULL,
+    borrower_id INTEGER GENERATED ALWAYS AS IDENTITY,
     email_address VARCHAR(255) NOT NULL,
     name TEXT NOT NULL,
     phone_number VARCHAR(255) NOT NULL,
@@ -46,14 +46,14 @@ CREATE TABLE lendings(
 CREATE TABLE staff(
     staff_password VARCHAR(255) NOT NULL,
     staff_username VARCHAR(255) NOT NULL,
-    staff_id VARCHAR(255) NOT NULL,
+    staff_id INTEGER GENERATED ALWAYS AS IDENTITY,
     PRIMARY KEY(staff_id)
 );
 
 CREATE TABLE token(
-    staff_id VARCHAR(255) NOT NULL,
+    staff_id INTEGER NOT NULL,
     token VARCHAR(255) NOT NULL,
-    token_id VARCHAR(255) NOT NULL,
+    token_id INTEGER GENERATED ALWAYS AS IDENTITY,
     PRIMARY KEY(token_id),
     FOREIGN KEY (staff_id) REFERENCES staff(staff_id)
     );
@@ -62,14 +62,7 @@ INSERT INTO location (location_id, post_code, street_address) VALUES
 (1, '12345', '123 Fake Street'),
 (2, '54321', '456 Mock Avenue');
 
-INSERT INTO tool (tool_id, location_id, tool_name, price_per_day, description, image_URL, status) VALUES
-(1, 1, 'Hammer', 10, 'A versatile tool for various tasks', 'https://example.com/hammer.jpg', 'available'),
-(2, 2, 'Screwdriver Set', 8, 'Includes Phillips and flat-head screwdrivers', 'https://example.com/screwdriver.jpg', 'available');
 
-INSERT INTO borrower (borrower_id, email_address, name, phone_number) VALUES
-(1, 'john.doe@example.com', 'John Doe', '123-456-7890'),
-(2, 'jane.smith@example.com', 'Jane Smith', '987-654-3210');
-
-INSERT INTO lendings (borrower_id, tool_id, start_date, end_date, active) VALUES
-(1, 1, '2024-02-13', '2024-02-20', true),
-(2, 2, '2024-02-15', '2024-02-22', true);
+INSERT INTO tool (location_id, tool_name, price_per_day, description, image_URL, status) VALUES
+(1, 'Hammer', 10, 'A versatile tool for various tasks', 'https://example.com/hammer.jpg', 'available'),
+(2, 'Screwdriver Set', 8, 'Includes Phillips and flat-head screwdrivers', 'https://example.com/screwdriver.jpg', 'available')
