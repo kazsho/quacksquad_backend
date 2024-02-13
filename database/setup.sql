@@ -1,57 +1,66 @@
-CREATE TABLE "locations"(
-    "location_id" INTEGER NOT NULL,
-    "post_code" VARCHAR(255) NOT NULL,
-    "street_address" VARCHAR(255) NOT NULL
+DROP TABLE IF EXISTS location;
+DROP TABLE IF EXISTS lendings;
+DROP TABLE IF EXISTS borrower;
+DROP TABLE IF EXISTS staff;
+DROP TABLE IF EXISTS tool;
+DROP TABLE IF EXISTS token;
+
+
+CREATE TABLE location(
+    location_id INTEGER NOT NULL,
+    post_code VARCHAR(255) NOT NULL,
+    street_address VARCHAR(255) NOT NULL,
+    PRIMARY KEY (location_id);
 );
-ALTER TABLE
-    "locations" ADD PRIMARY KEY("location_id");
-ALTER TABLE
-    "locations" ADD PRIMARY KEY("post_code");
-CREATE TABLE "lendings"(
-    "borrower_id" INTEGER NOT NULL,
-    "tool_id" INTEGER NOT NULL,
-    "start_date" DATE NOT NULL,
-    "end_date" DATE NOT NULL,
-    "active" BOOLEAN NOT NULL
+
+
+CREATE TABLE lendings(
+    borrower_id INTEGER NOT NULL,
+    tool_id INTEGER NOT NULL,
+    start_date DATE NOT NULL,
+    end_date DATE NOT NULL,
+    active BOOLEAN NOT NULL,
+    FOREIGN KEY tool_id REFERENCES tool(tool_id),
+    FOREIGN KEY borrower_id REFERENCES borrower(borrower_id);
 );
-CREATE TABLE "borrower"(
-    "borrower_id" INTEGER NOT NULL,
-    "email_address" VARCHAR(255) NOT NULL,
-    "name" TEXT NOT NULL,
-    "phone_number" VARCHAR(255) NOT NULL
+
+
+CREATE TABLE borrower(
+    borrower_id INTEGER NOT NULL,
+    email_address VARCHAR(255) NOT NULL,
+    name TEXT NOT NULL,
+    phone_number VARCHAR(255) NOT NULL,
+    PRIMARY KEY(borrower_id);
 );
-ALTER TABLE
-    "borrower" ADD PRIMARY KEY("borrower_id");
-CREATE TABLE "staff"(
-    "staff_password" VARCHAR(255) NOT NULL,
-    "staff_username" VARCHAR(255) NOT NULL,
-    "staff_id" VARCHAR(255) NOT NULL
+
+
+CREATE TABLE staff(
+    staff_password VARCHAR(255) NOT NULL,
+    staff_username VARCHAR(255) NOT NULL,
+    staff_id VARCHAR(255) NOT NULL,
+    PRIMARY KEY(staff_id);
 );
-ALTER TABLE
-    "staff" ADD PRIMARY KEY("staff_password");
-CREATE TABLE "tools"(
-    "tool_id" INTEGER NOT NULL,
-    "location_id" INTEGER NOT NULL,
-    "tool_name" VARCHAR(255) NOT NULL,
-    "price_per_day" INTEGER NOT NULL,
-    "description" TEXT NOT NULL,
-    "image_URL" VARCHAR(255) NOT NULL,
-    "status" TEXT NOT NULL
+
+
+CREATE TABLE tool(
+    tool_id INTEGER NOT NULL,
+    location_id INTEGER NOT NULL,
+    tool_name VARCHAR(255) NOT NULL,
+    price_per_day INTEGER NOT NULL,
+    description TEXT NOT NULL,
+    image_URL VARCHAR(255) NOT NULL,
+    status TEXT NOT NULL,
+    PRIMARY KEY(tool_id), 
+    FOREIGN KEY location_id REFERENCES location(location_id);
 );
-ALTER TABLE
-    "tools" ADD PRIMARY KEY("tool_id");
-CREATE TABLE "token_id"(
-    "staff_id" VARCHAR(255) NOT NULL,
-    "token" VARCHAR(255) NOT NULL,
-    "token_id" VARCHAR(255) NOT NULL
-);
-ALTER TABLE
-    "token_id" ADD PRIMARY KEY("staff_id");
-ALTER TABLE
-    "staff" ADD CONSTRAINT "staff_staff_id_foreign" FOREIGN KEY("staff_id") REFERENCES "token_id"("staff_id");
-ALTER TABLE
-    "lendings" ADD CONSTRAINT "lendings_tool_id_foreign" FOREIGN KEY("tool_id") REFERENCES "tools"("tool_id");
-ALTER TABLE
-    "lendings" ADD CONSTRAINT "lendings_borrower_id_foreign" FOREIGN KEY("borrower_id") REFERENCES "borrower"("borrower_id");
-ALTER TABLE
-    "tools" ADD CONSTRAINT "tools_location_id_foreign" FOREIGN KEY("location_id") REFERENCES "locations"("location_id");
+
+
+
+CREATE TABLE token(
+    staff_id VARCHAR(255) NOT NULL,
+    token VARCHAR(255) NOT NULL,
+    token_id VARCHAR(255) NOT NULL,
+    PRIMARY KEY(token_id),
+    FOREIGN KEY staff_id REFERENCES staff(staff_id);
+    );
+
