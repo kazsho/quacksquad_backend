@@ -40,10 +40,16 @@ static async create(data) {
     return new Tool(response.rows[0])
 }
 
-// async update(data){
-//     let response = await db.query("UPDATE country SET name = $1, capital = $2, population = $3, languages = $4, fun_fact = $5, map_image_url = $6 WHERE name = $7 RETURNING *;",[data.name, data.capital, data.population, data.languages, data.fun_fact, data.map_image_url, this.name])
-//     return new Country(response.rows[0])
-// }
+static async update(id, data){
+    const et = await db.query("SELECT tool_id FROM tool WHERE tool_id = $1", [id])
+    
+    if(et.rows.length === 0){
+        throw new Error("Tool does not exist yet")
+    }
+    let response = await db.query("UPDATE tool SET tool_name = $1, location_id = $2, price_per_day = $3, description = $4, image_URL = $5, status = $6 WHERE tool_id = $7 RETURNING *;",[data.tool_name, data.location_id, data.price_per_day, data.description, data.image_URL, data.status, id])
+    return new Tool(response.rows[0])
+}
+
 
 // async destroy(){
 //     let response = await db.query("DELETE FROM country WHERE name = $1 RETURNING *;", [this.name])

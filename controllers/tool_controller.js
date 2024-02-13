@@ -29,7 +29,16 @@ const create = async (req, res) => {
     }
 }
 
+const update = async (req, res) => {
+    try {
+        const id = parseInt(req.params.id);
+        const data = req.body;
+        const updatedTool = await Tool.update(id, data);
+        res.status(200).json(updatedTool);
+    } catch (err) {
+        res.status(400).json({"error": err.message});
+    }
+}
 
 
-
-module.exports = { index, show, create }
+module.exports = { index, show, create, update }
