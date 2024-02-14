@@ -33,6 +33,13 @@ CREATE TABLE borrower(
     PRIMARY KEY(borrower_id)
 );
 
+CREATE TABLE staff(
+    staff_password VARCHAR(255) NOT NULL,
+    staff_username VARCHAR(255) UNIQUE NOT NULL,
+    staff_id INTEGER GENERATED ALWAYS AS IDENTITY,
+    PRIMARY KEY(staff_id)
+);
+
 CREATE TABLE lending(
     lending_id INTEGER GENERATED ALWAYS AS IDENTITY,
     borrower_id INTEGER NOT NULL,
@@ -44,13 +51,6 @@ CREATE TABLE lending(
     FOREIGN KEY (tool_id) REFERENCES tool(tool_id),
     FOREIGN KEY (borrower_id) REFERENCES borrower(borrower_id),
     FOREIGN KEY (staff_id) REFERENCES staff(staff_id)
-);
-
-CREATE TABLE staff(
-    staff_password VARCHAR(255) NOT NULL,
-    staff_username VARCHAR(255) UNIQUE NOT NULL,
-    staff_id INTEGER GENERATED ALWAYS AS IDENTITY,
-    PRIMARY KEY(staff_id)
 );
 
 CREATE TABLE token(
