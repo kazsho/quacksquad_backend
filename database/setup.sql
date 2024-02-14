@@ -17,7 +17,7 @@ CREATE TABLE tool(
     tool_id INTEGER GENERATED ALWAYS AS IDENTITY,
     location_id INTEGER NOT NULL,
     tool_name VARCHAR(255) NOT NULL,
-    price_per_day INTEGER NOT NULL,
+    price_per_day NUMERIC NOT NULL,
     description TEXT NOT NULL,
     image_URL VARCHAR(255) NOT NULL,
     status TEXT NOT NULL,
@@ -39,7 +39,6 @@ CREATE TABLE lending(
     tool_id INTEGER NOT NULL,
     start_date DATE NOT NULL,
     end_date DATE NOT NULL,
-    active BOOLEAN NOT NULL,
     PRIMARY KEY(lending_id),
     FOREIGN KEY (tool_id) REFERENCES tool(tool_id),
     FOREIGN KEY (borrower_id) REFERENCES borrower(borrower_id)

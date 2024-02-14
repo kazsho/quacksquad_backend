@@ -4,6 +4,7 @@ const cors = require('cors');
 const logRoutes = require('./middleware/logger');
 const toolRouter = require('./routes/tool_routes');
 const userRouter = require('./routes/user_routes');
+const reservationRouter = require('./routes/reservation_routes')
 
 
 const app = express();
