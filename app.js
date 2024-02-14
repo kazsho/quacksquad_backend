@@ -15,5 +15,6 @@ app.use(logRoutes);
 
 app.use("/tools", toolRouter);
 app.use("/users", userRouter);
+app.use("/reservations", reservationRouter)
 
 module.exports = app;

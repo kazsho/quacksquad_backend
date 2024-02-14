@@ -36,12 +36,14 @@ CREATE TABLE borrower(
 CREATE TABLE lending(
     lending_id INTEGER GENERATED ALWAYS AS IDENTITY,
     borrower_id INTEGER NOT NULL,
+    staff_id INTEGER, 
     tool_id INTEGER NOT NULL,
     start_date DATE NOT NULL,
     end_date DATE NOT NULL,
     PRIMARY KEY(lending_id),
     FOREIGN KEY (tool_id) REFERENCES tool(tool_id),
-    FOREIGN KEY (borrower_id) REFERENCES borrower(borrower_id)
+    FOREIGN KEY (borrower_id) REFERENCES borrower(borrower_id),
+    FOREIGN KEY (staff_id) REFERENCES staff(staff_id)
 );
 
 CREATE TABLE staff(

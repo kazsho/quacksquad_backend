@@ -9,11 +9,29 @@ const index = async (req, res) => {
     }
 } 
 
+const random = async (req, res) => {
+    try{
+        const data = await Tool.showRandom()
+        res.status(200).json(data)
+    }catch (error){
+        res.status(500).json({error: error.message})
+    }
+} 
+
+const search = async (req, res) => {
+    try {
+      const query = await Tool.searchByQuery(req.query.search)
+      res.status(200).json(query);
+    } catch (error) {
+      res.status(500).json({ error: error.message })
+    }
+  }
+  
 const show = async (req, res) => {
     try {
         const id = parseInt(req.params.id);
         const tool = await Tool.getOneById(id);
-        res.json(tool);
+        res.status(200).json(tool);
     } catch (err) {
         res.status(404).json({"error": err.message})
     }
@@ -52,4 +70,4 @@ const destroy = async (req, res) => {
 }
 
 
-module.exports = { index, show, create, update, destroy }
+module.exports = { index, show, create, update, destroy, search, random }

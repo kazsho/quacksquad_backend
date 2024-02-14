@@ -3,6 +3,6 @@ const reservationController = require('../controllers/reservation_controller')
 
 const reservationRouter = Router()
 
-reservationRouter.post("/:tool_id", reservationController.create)
+reservationRouter.post("/", reservationController.create)
 
 module.exports = reservationRouter
