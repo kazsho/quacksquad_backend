@@ -6,15 +6,15 @@
 // module.exports = logRoutes;
 
 function logRoutes(req, res, next) {
-    console.log(`${req.method} ${req.originalUrl}`);
-    console.log("Request body:", req.body);
-    console.log("Query parameters:", req.query);
+    console.log(`${req.method} ${req.originalUrl}`)
+    console.log("Request body:", req.body)
+    console.log("Query parameters:", req.query)
 
     res.on("finish", () => {
-        console.log(`Response status: ${res.statusCode}`);
+        console.log(`Response status: ${res.statusCode}`)
     });
 
-    next();
+    next()
 }
 
-module.exports = logRoutes;
+module.exports = logRoutes

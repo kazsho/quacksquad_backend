@@ -1,5 +1,5 @@
-const bcrypt = require('bcrypt');
-const User = require('../models/User_model');
+const bcrypt = require('bcrypt')
+const User = require('../models/User_model')
 const Token = require('../models/Token_model')
 
 const register = async (req, res) => {

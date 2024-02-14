@@ -21,12 +21,12 @@ static async getAll() {
 }
 
 static async showRandom() {
-    const response = await db.query("SELECT * FROM tool ORDER BY RANDOM() LIMIT 3;");
+    const response = await db.query("SELECT * FROM tool ORDER BY RANDOM() LIMIT 3;")
     if (response.rows.length === 0) {
         throw new Error("No tools found in the database");
     }
 
-    return response.rows.map(t => new Tool(t));
+    return response.rows.map(t => new Tool(t))
 }
 
 static async searchByQuery(query) {
@@ -34,21 +34,21 @@ static async searchByQuery(query) {
     if (!query) {
         throw new Error('Please enter a valid search item')
     }
-    const response = await db.query("SELECT * FROM tool WHERE tool_name LIKE $1", ['%' + query + '%']);
+    const response = await db.query("SELECT * FROM tool WHERE tool_name LIKE $1", ['%' + query + '%'])
 
     if (response.rows.length === 0) {
-        throw new Error('No items found for the search term');
+        throw new Error('No items found for the search term')
       }
       
-    return response.rows.map(t => new Tool(t));
+    return response.rows.map(t => new Tool(t))
   }
 
 static async getOneById(id) {
-    const response = await db.query("SELECT * FROM tool WHERE tool_id = $1", [id]);
+    const response = await db.query("SELECT * FROM tool WHERE tool_id = $1", [id])
     if (response.rows.length != 1) {
         throw new Error("Unable to locate tool.")
     }
-    return new Tool(response.rows[0]);
+    return new Tool(response.rows[0])
 }
 
 static async create(data) {
