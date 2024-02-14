@@ -34,7 +34,8 @@ static async searchByQuery(query) {
     if (!query) {
         throw new Error('Please enter a valid search item')
     }
-    const response = await db.query("SELECT * FROM tool WHERE tool_name LIKE $1", ['%' + query + '%'])
+    const lowerCaseQuery = query.toLowerCase()
+    const response = await db.query("SELECT * FROM tool WHERE LOWER(tool_name) LIKE $1", ['%' + lowerCaseQuery + '%'])
 
     if (response.rows.length === 0) {
         throw new Error('No items found for the search term')
