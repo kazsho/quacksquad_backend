@@ -21,7 +21,7 @@ const random = async (req, res) => {
 const search = async (req, res) => {
     try {
       const query = await Tool.searchByQuery(req.query.search)
-      res.status(200).json(query);
+      res.status(200).json(query)
     } catch (error) {
       res.status(500).json({ error: error.message })
     }
@@ -29,9 +29,9 @@ const search = async (req, res) => {
   
 const show = async (req, res) => {
     try {
-        const id = parseInt(req.params.id);
-        const tool = await Tool.getOneById(id);
-        res.status(200).json(tool);
+        const id = parseInt(req.params.id)
+        const tool = await Tool.getOneById(id)
+        res.status(200).json(tool)
     } catch (err) {
         res.status(404).json({"error": err.message})
     }
@@ -40,8 +40,8 @@ const show = async (req, res) => {
 const create = async (req, res) => {
     try {
         const data = req.body;
-        const result = await Tool.create(data);
-        res.status(201).send(result);
+        const result = await Tool.create(data)
+        res.status(201).send(result)
     } catch (err) {
         res.status(400).json({"error": err.message})
     }
