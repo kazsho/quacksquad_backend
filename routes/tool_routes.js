@@ -5,6 +5,8 @@ const toolController = require("../controllers/tool_controller")
 const toolRouter = Router()
 
 toolRouter.get("/", toolController.index)
+toolRouter.get("/random", toolController.random)
+toolRouter.get("/search", toolController.search)
 toolRouter.get("/:id", toolController.show)
 toolRouter.post("/", toolController.create)
 toolRouter.patch("/:id", toolController.update)
