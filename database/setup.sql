@@ -67,8 +67,8 @@ INSERT INTO location (location_id, post_code, street_address) VALUES
 (3, 'FL01 5BT', '789 Station Road, Florin');
 
 INSERT INTO staff (staff_username, staff_password) VALUES
-('janedoe', '12345'),
-('johndoe', '54321');
+('janedoe', '$2b$10$FgvME/rY2ZY8NI7rPgZ8UO6Mn0RNAnZdRaC4DEArC7PSfO/eZYgma'),
+('johndoe', '$2b$10$Zea/8f53fZ4UMeKP4Ngn3utiumHGzZr43GRyUB6bIBsgX583XyFfC');
 
 
 INSERT INTO tool (location_id, tool_name, price_per_day, description, image_URL, status) VALUES
