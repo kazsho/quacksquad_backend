@@ -5,7 +5,7 @@ constructor({tool_name, tool_id, location_id, price_per_day, description, image_
     this.tool_name = tool_name
     this.tool_id = tool_id
     this.location_id = location_id
-    this.price_per_day = price_per_day
+    this.price_per_day = Number(price_per_day).toFixed(2)
     this.description = description
     this.image_url = image_url
     this.status = status
