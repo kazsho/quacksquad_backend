@@ -18,7 +18,7 @@ const register = async (req, res) => {
 };
 
 const login = async (req, res) => {
-    const data = req.body;
+    const data = req.body
     try{
 
         const user = await User.getOneByUsername(data.staff_username)
