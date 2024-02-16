@@ -10,6 +10,14 @@
     "test": "jest --verbose",
     "coverage": "jest --coverage"
   },
+  "jest": {
+    "collectCoverageFrom": [
+      "**/*.{js,jsx}",
+      "!**/node_modules/**",
+      "!**/coverage/**",
+      "!**/__tests__/**"
+    ]
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
